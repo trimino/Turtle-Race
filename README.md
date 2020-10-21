@@ -7,6 +7,6 @@
 
 
 
-* Required Software
+* Required Software:
 	python3
 	Turtle Module (built in Module)
