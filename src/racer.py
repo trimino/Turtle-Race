@@ -24,6 +24,7 @@ class Racer (turtle.Turtle):
         self.s = start_position 
         self.x = x_position
         self.y = y_position
+        self.c = color
         self.hideturtle()
         self.penup()
         self.color( color )
@@ -40,5 +41,8 @@ class Racer (turtle.Turtle):
         self.setpos( self.start ) 
 
     def get_position(self):
-        return (self.x, self.y )
+        return ( self.x, self.y )
+    
+    def get_color(self):
+        return self.c
 

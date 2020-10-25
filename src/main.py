@@ -1,5 +1,5 @@
 from racer import * 
-
+from time import sleep
 
 
 def start_game():
@@ -48,26 +48,50 @@ def start_game():
     # AI 
     max_distance = -1000
     max_colors = [] 
+    
+    play  = True
+    while play:
+        for racer in racers:
+            racer.move()
 
-    i = 0
-    while i < 2:
-        i = i + 1
+        for racer in racers:
+            position = racer.get_position()
 
+            # if there is a new first place turtle keep track of stats
+            if position[0] > max_distance:
+                max_distance = position[0]
+                max_colors.clear()
+                max_colors.append( racer.get_color() )
+        
+            # if we have a tie for first 
+            elif position[0] == max_distance:
+                max_colors.append( racer.get_color() )
+
+            if max_distance >= finish_line:
+                play = False
+
+    sleep(2)
 
 
     # Display Winner 
     mainwin.clearscreen()
     mainwin.bgcolor('black')
     finish.hideturtle()
+    finish.setpos( 0, 0 )
+    
+    winners = ' '.join( max_colors )
+    winners = 'The winners is/are: \n' + winners
+    finish.write( winners, align = 'center', font = ("Arial", 56, "normal") )
 
 
-    mainwin.mainloop()
+    mainwin.clearscreen()
 
 
 
 
-start_game()
 
 
+while True:
+    start_game()
 
 
